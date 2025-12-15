@@ -1,0 +1,19 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --container-height: 100vh;
+  --dynamic-container-height: 100dvh;
+  --container-width: 100vw;
+  --dynamic-container-width: 100dvw;
+}
+#root {
+  height: var(--dynamic-container-height, --container-height);
+  width: var(--dynamic-container-width, --container-width);
+  color: #ffffff;
+  background-color: #1c1c1c;
+}
