@@ -15,5 +15,29 @@
   height: var(--dynamic-container-height, --container-height);
   width: var(--dynamic-container-width, --container-width);
   color: #ffffff;
+  background-color: #2d2d2d;
+}
+
+/* Resets */
+.button{
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Header */
+.header{
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:  0 1.2rem;
   background-color: #1c1c1c;
+}
+.add-todo-button{
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+  height: 60%;
 }
