@@ -80,6 +80,10 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  border: 0.15rem solid transparent;
+}
+.todo-item.selected {
+  border: 0.15rem solid rgba(255, 255, 255, 0.6);
 }
 .todo-checkbox-text-wrapper {
   display: flex;
@@ -96,6 +100,14 @@
 }
 .todo-state-icon {
   height: 1.4rem;
+}
+.todo-remove-button {
+  pointer-events: none;
+  opacity: 0;
+}
+.todo-item.selected .todo-remove-button {
+  pointer-events: auto;
+  opacity: 1;
 }
 .todo-remove-icon {
   height: 1.2rem;

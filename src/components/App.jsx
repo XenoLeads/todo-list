@@ -54,17 +54,24 @@ function reducer(todos, action) {
 function App() {
   const [activeStateFilterId, setActiveStateFilterId] = useState(1);
   const [todos, dispatch] = useReducer(reducer, intial_todos);
+  const [selectedTodoId, setSelectedTodoId] = useState(null);
 
   function handle_state_filter_click(id) {
     if (![1, 2, 3].includes(parseInt(id))) return;
     setActiveStateFilterId(id);
   }
 
+  function handle_todo_click(event) {
+    const input = event.target;
+    const id = input.dataset.id;
+    setSelectedTodoId(id);
+  }
+
   return (
     <>
       <Header />
       <Filters state_filters={state_filters} active_state_filter_id={activeStateFilterId} handle_state_filter_click={handle_state_filter_click} />
-      <TodoList todos={todos} dispatch={dispatch} />
+      <TodoList todos={todos} dispatch={dispatch} selected_todo_id={selectedTodoId} on_click={handle_todo_click} />
     </>
   );
 }
