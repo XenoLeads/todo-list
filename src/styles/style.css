@@ -67,3 +67,36 @@
   background-color: hsl(202, 30%, 50%);
   border: 0.125rem solid white;
 }
+.todo-list-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+}
+.todo-item {
+  background-color: rgba(255, 255, 255, 0.2);
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+.todo-checkbox-text-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.4rem;
+}
+.todo-checkbox {
+  display: none;
+}
+.todo-state-icon,
+.todo-remove-icon {
+  cursor: pointer;
+}
+.todo-state-icon {
+  height: 1.4rem;
+}
+.todo-remove-icon {
+  height: 1.2rem;
+}
