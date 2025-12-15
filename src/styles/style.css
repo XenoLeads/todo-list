@@ -86,9 +86,12 @@
 .todo-item.selected {
   border: 0.15rem solid rgba(255, 255, 255, 0.6);
 }
-.todo-list-container:not(:has(.todo-item.selected)) .todo-item:hover .todo-remove-button {
-  pointer-events: auto;
-  opacity: 1;
+/* If the user is using a fine pointer(mouse/stylus) then show remove todo button upon hover */
+@media (pointer: fine) {
+  .todo-list-container:not(:has(.todo-item.selected)) .todo-item:hover .todo-remove-button {
+    pointer-events: auto;
+    opacity: 1;
+  }
 }
 .todo-checkbox-text-wrapper {
   display: flex;
