@@ -1,4 +1,4 @@
-import { useState, useReducer, useRef } from "react";
+import { useState, useEffect, useReducer, useRef, useCallback } from "react";
 import Header from "./Header";
 import Filters from "./Filters";
 import TodoList from "./TodoList";
@@ -98,6 +98,16 @@ function App() {
   function reset_latest_todo_id() {
     latestTodoId.current = null;
   }
+
+  const handle_outside_click = useCallback(event => {
+    const input = event.target;
+    if (input.closest(".todo-item") === null) setSelectedTodoId(null);
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("click", handle_outside_click);
+    return () => document.removeEventListener("click", handle_outside_click);
+  }, [handle_outside_click]);
 
   return (
     <>
