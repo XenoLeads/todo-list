@@ -67,12 +67,19 @@ function Todo({ todo, dispatch, selected_todo_id, on_click }) {
   );
 }
 
-function TodoList({ todos, dispatch, on_click, selected_todo_id }) {
+function filter_todos(todos, active_only = true) {
+  if (active_only) return todos.filter(todo => todo.checked === false);
+  return todos.filter(todo => todo.checked === true);
+}
+
+function TodoList({ todos, dispatch, on_click, selected_todo_id, active_state_filter }) {
   return (
     <div className="todo-list-container">
-      {todos.map(todo => (
-        <Todo key={todo.id} todo={todo} dispatch={dispatch} selected_todo_id={selected_todo_id} on_click={on_click} />
-      ))}
+      {active_state_filter && active_state_filter.name !== "all"
+        ? filter_todos(todos, active_state_filter.name === "active").map(todo => (
+            <Todo key={todo.id} todo={todo} dispatch={dispatch} selected_todo_id={selected_todo_id} on_click={on_click} />
+          ))
+        : todos.map(todo => <Todo key={todo.id} todo={todo} dispatch={dispatch} selected_todo_id={selected_todo_id} on_click={on_click} />)}
     </div>
   );
 }

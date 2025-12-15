@@ -36,6 +36,12 @@ const intial_todos = [
   },
 ];
 
+function get_active_state_filter(id) {
+  const index = state_filters.findIndex(filter => filter.id === id);
+  if (index < 0) return null;
+  return state_filters[index];
+}
+
 function reducer(todos, action) {
   switch (action.type) {
     case "toggle-todo-complete": {
@@ -78,7 +84,13 @@ function App() {
     <>
       <Header />
       <Filters state_filters={state_filters} active_state_filter_id={activeStateFilterId} handle_state_filter_click={handle_state_filter_click} />
-      <TodoList todos={todos} dispatch={dispatch} selected_todo_id={selectedTodoId} on_click={handle_todo_click} />
+      <TodoList
+        todos={todos}
+        dispatch={dispatch}
+        selected_todo_id={selectedTodoId}
+        on_click={handle_todo_click}
+        active_state_filter={get_active_state_filter(activeStateFilterId)}
+      />
     </>
   );
 }
