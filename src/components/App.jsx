@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useState, useReducer, useRef } from "react";
 import Header from "./Header";
 import Filters from "./Filters";
 import TodoList from "./TodoList";
@@ -61,6 +61,9 @@ function reducer(todos, action) {
       new_todos[index].text = action.text;
       return new_todos;
     }
+    case "todo-added": {
+      return [action.todo, ...todos];
+    }
   }
 }
 
@@ -68,6 +71,7 @@ function App() {
   const [activeStateFilterId, setActiveStateFilterId] = useState(1);
   const [todos, dispatch] = useReducer(reducer, intial_todos);
   const [selectedTodoId, setSelectedTodoId] = useState(null);
+  const latestTodoId = useRef(null);
 
   function handle_state_filter_click(id) {
     if (![1, 2, 3].includes(parseInt(id))) return;
@@ -80,9 +84,24 @@ function App() {
     setSelectedTodoId(id);
   }
 
+  function create_new_todo() {
+    const todo = {
+      id: crypto.randomUUID(),
+      text: "",
+      checked: false,
+      new: true,
+    };
+    dispatch({ type: "todo-added", todo });
+    latestTodoId.current = todo.id;
+  }
+
+  function reset_latest_todo_id() {
+    latestTodoId.current = null;
+  }
+
   return (
     <>
-      <Header />
+      <Header create_new_todo={create_new_todo} />
       <Filters state_filters={state_filters} active_state_filter_id={activeStateFilterId} handle_state_filter_click={handle_state_filter_click} />
       <TodoList
         todos={todos}
@@ -90,6 +109,8 @@ function App() {
         selected_todo_id={selectedTodoId}
         on_click={handle_todo_click}
         active_state_filter={get_active_state_filter(activeStateFilterId)}
+        latest_todo_id={latestTodoId}
+        reset_latest_todo_id={reset_latest_todo_id}
       />
     </>
   );
