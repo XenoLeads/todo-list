@@ -1,36 +1,24 @@
-import dropdown_icon from "../assets/icons/dropdown.svg";
-
-function Filter({ filter, active_filter_id, set_active_filter_id }) {
+function StateFilter({ filter, active_state_filter_id, handle_state_filter_click }) {
   return (
-    <>
-      {filter.type === "button" ? (
-        <button
-          className={`button todo-filter todo-filter-${filter.name}${active_filter_id === filter.id ? " selected" : ""}`}
-          onClick={() => set_active_filter_id(filter.id)}
-        >
-          {filter.name}
-        </button>
-      ) : (
-        <div className="dropdown-wrapper">
-          <select name="todo-category-input" className="button todo-filter">
-            {filter.options.map(option => (
-              <option key={option.id} value={option.name}>
-                {option.name}
-              </option>
-            ))}
-          </select>
-          <img src={dropdown_icon} alt="" className="dropdown-icon" />
-        </div>
-      )}
-    </>
+    <button
+      className={`button todo-filter todo-filter-${filter.name}${active_state_filter_id === filter.id ? " selected" : ""}`}
+      onClick={() => handle_state_filter_click(filter.id)}
+    >
+      {filter.name}
+    </button>
   );
 }
 
-function Filters({ filters, active_filter_id, set_active_filter_id }) {
+function Filters({ state_filters, active_state_filter_id, handle_state_filter_click }) {
   return (
     <div className="todo-filters">
-      {filters.map(filter => (
-        <Filter key={filter.id} filter={filter} active_filter_id={active_filter_id} set_active_filter_id={set_active_filter_id} />
+      {state_filters.map(filter => (
+        <StateFilter
+          key={filter.id}
+          filter={filter}
+          active_state_filter_id={active_state_filter_id}
+          handle_state_filter_click={handle_state_filter_click}
+        />
       ))}
     </div>
   );

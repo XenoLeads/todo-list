@@ -47,13 +47,11 @@
 }
 .todo-filters {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   margin: 0 1rem;
   margin-top: 1rem;
   padding: 0 0.4rem;
-  overflow-x: auto;
-  scrollbar-width: none;
   gap: 0.6rem;
 }
 .todo-filter {
@@ -68,23 +66,4 @@
 .todo-filter.selected {
   background-color: hsl(202, 30%, 50%);
   border: 0.125rem solid white;
-}
-.dropdown-wrapper {
-  position: relative;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-select.todo-filter {
-  appearance: none;
-  padding-right: 2rem;
-}
-.dropdown-icon {
-  position: absolute;
-  height: 0.7rem;
-  padding-right: 0.4rem;
-}
-select.todo-filter > option {
-  color: white;
-  background-color: #1c1c1c;
 }
