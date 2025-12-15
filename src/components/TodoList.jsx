@@ -1,8 +1,22 @@
+import { useRef, useEffect } from "react";
 import unchecked_todo_icon from "../assets/icons/unchecked-todo.svg";
 import checked_todo_icon from "../assets/icons/checked-todo.svg";
 import remove_todo_icon from "../assets/icons/remove-todo.svg";
 
+function resize_textarea(event) {
+  const input = event.target;
+  input.style.height = "auto";
+  input.style.height = input.scrollHeight + "px";
+}
+
 function Todo({ todo, dispatch, selected_todo_id, on_click }) {
+  const textarea_ref = useRef(null);
+
+  useEffect(() => {
+    textarea_ref.current.style.height = "auto";
+    textarea_ref.current.style.height = textarea_ref.current.scrollHeight + "px";
+  }, []);
+
   return (
     <div className={`todo-item${selected_todo_id === todo.id ? " selected" : ""}`} data-id={todo.id} onClick={on_click}>
       <div className="todo-checkbox-text-wrapper">
@@ -21,7 +35,21 @@ function Todo({ todo, dispatch, selected_todo_id, on_click }) {
             className="todo-checkbox"
           />
         </label>
-        <p className="todo-item-text">{todo.text}</p>
+        <textarea
+          name="todo-item-text"
+          className="todo-item-text"
+          value={todo.text}
+          onChange={e =>
+            dispatch({
+              type: "todo-edited",
+              text: e.target.value,
+              id: todo.id,
+            })
+          }
+          rows={1}
+          onInput={resize_textarea}
+          ref={textarea_ref}
+        ></textarea>
       </div>
       <button
         className="button todo-remove-button"

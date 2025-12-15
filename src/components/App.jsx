@@ -48,6 +48,13 @@ function reducer(todos, action) {
     case "todo-deleted": {
       return todos.filter(todo => todo.id !== action.id);
     }
+    case "todo-edited": {
+      const index = todos.findIndex(todo => todo.id === action.id);
+      if (index < 0) return todos;
+      const new_todos = [...todos];
+      new_todos[index].text = action.text;
+      return new_todos;
+    }
   }
 }
 
