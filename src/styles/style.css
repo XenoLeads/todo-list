@@ -16,6 +16,7 @@
   width: var(--dynamic-container-width, --container-width);
   color: #ffffff;
   background-color: #2d2d2d;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Resets */
