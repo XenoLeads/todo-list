@@ -197,3 +197,14 @@
 .todo-checkbox-text-wrapper > label:not(:has(.todo-checkbox:checked)):active > .todo-state-icon.checked {
   opacity: 0.6;
 }
+.todo-remove-button {
+  padding: 0.4rem 1rem;
+  border-radius: 0.4rem;
+  transition: background-color var(--transition-time) ease;
+}
+.todo-remove-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.todo-remove-button:active {
+  background-color: rgba(255, 255, 255, 0.2);
+}

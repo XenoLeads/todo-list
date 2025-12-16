@@ -68,7 +68,7 @@ function Todo({ todo, dispatch, selected_todo_id, on_click, latest_todo_id, rese
           });
         }}
       >
-        <img src={remove_todo_icon} alt="" className="todo-remove-icon" />
+        <img src={remove_todo_icon} alt="" className="todo-remove-icon" draggable="false" />
       </button>
     </div>
   );
