@@ -89,7 +89,7 @@
   border: 0.15rem solid transparent;
 }
 .todo-item.selected {
-  border: 0.15rem solid rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 /* If the user is using a fine pointer(mouse/stylus) then show remove todo button upon hover */
 @media (pointer: fine) {
@@ -182,4 +182,12 @@
 .add-todo-button:active .add-button-icon {
   filter: brightness(120%);
   border-color: rgba(255, 255, 255, 0.6);
+}
+.todo-filter:not(.selected):hover {
+  background-color: hsl(202, 30%, 45%);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.todo-filter:not(.selected):active {
+  background-color: hsl(202, 30%, 50%);
+  border-color: rgba(255, 255, 255, 0.4);
 }
