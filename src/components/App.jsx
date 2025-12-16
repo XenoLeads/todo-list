@@ -84,9 +84,9 @@ function App() {
     latestTodoId.current = todo.id;
   }
 
-  function reset_latest_todo_id() {
+  const reset_latest_todo_id = useCallback(() => {
     latestTodoId.current = null;
-  }
+  }, []);
 
   const handle_outside_click = useCallback(event => {
     const input = event.target;

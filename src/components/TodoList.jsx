@@ -20,7 +20,7 @@ function Todo({ todo, dispatch, selected_todo_id, on_click, latest_todo_id, rese
       textarea_ref.current.focus();
       reset_latest_todo_id();
     }
-  }, []);
+  }, [todo.id, latest_todo_id, reset_latest_todo_id]);
 
   return (
     <div className={`todo-item${selected_todo_id === todo.id ? " selected" : ""}`} data-id={todo.id} onClick={on_click}>
